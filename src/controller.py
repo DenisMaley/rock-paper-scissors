@@ -1,13 +1,6 @@
-import random
+import click
 
-game_map = {0: 'rock', 1: 'paper', 2: 'scissors'}
-
-# Win-lose matrix for the game
-rps_matrix = [
-    [-1, 1, 0],
-    [1, -1, 2],
-    [0, 2, -1]
-]
+from .models import Player, Computer, Game
 
 class Controller:
 
@@ -15,22 +8,45 @@ class Controller:
         pass
 
     @staticmethod
-    def play_rps_game(move):
+    def set_player(name):
+        player = Player(name)
+        return player
 
-        print('Computer making a move....')
+    @staticmethod
+    def set_computer_player():
+        computer = Computer()
+        return computer
 
-        # Get the computer move randomly
-        comp_move = random.randint(0, 2)
+    @staticmethod
+    def set_game(rounds, player_a, player_b):
+        game = Game(rounds, player_a, player_b)
+        return game
 
-        # Find the winner of the match
-        winner = rps_matrix[move][comp_move]
+    @staticmethod
+    def play_game(game):
+        player_a = game.player_a
+        player_b = game.player_b
 
-        if winner == move:
-            result = 'You WIN!!!'
-        elif winner == comp_move:
-            result = 'COMPUTER WINS!!!'
-        else:
-            result = 'TIE GAME'
+        for i in range(game.rounds):
+            click.echo('-' * 50)
+            click.echo(f'Round #{i + 1}')
 
+            move = click.prompt('Please enter your move', type=click.IntRange(0, 2))
+            player_a.make_move(move)
 
-        return f'You have chosen {game_map[move]}, computer - {game_map[comp_move]}, {result}'
+            player_b.make_move()
+
+            click.echo(
+                f'{str(player_a)} moved with {str(player_a.get_move())}, '
+                f'{str(player_b)} moved with {str(player_b.get_move())}. '
+            )
+
+            winner = game.play_round()
+
+            if winner:
+                click.echo(f'The winner is {str(winner)}')
+            else:
+                click.echo('A draw')
+
+        click.echo('=' * 50)
+        click.echo(game.get_stats())
