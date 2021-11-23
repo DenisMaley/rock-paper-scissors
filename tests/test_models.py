@@ -83,3 +83,25 @@ class TestGame(unittest.TestCase):
         self.assertEqual(1, player_a.score)
         self.assertEqual(1, player_b.score)
         self.assertEqual(1, game.draws)
+
+    def test_get_stats(self):
+        player_a = Player(self.name_a)
+        player_b = Player(self.name_b)
+        game = Game(self.rounds, player_a, player_b)
+
+        # Draw case
+        player_a.make_move(0)
+        player_b.make_move(0)
+        game.play_round()
+
+        # Player A wins
+        player_a.make_move(1)
+        player_b.make_move(0)
+        game.play_round()
+
+        # Player B wins
+        player_a.make_move(1)
+        player_b.make_move(2)
+        game.play_round()
+
+        self.assertEqual(f'{self.name_a}:{self.name_b} - 1:1, 1 draw(s)', game.get_stats())
