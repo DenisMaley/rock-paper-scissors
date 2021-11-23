@@ -25,11 +25,11 @@ def cli():
     help='Player`s name',
 )
 def rps_game(rounds, name):
-    player_a = Controller().set_player(name)
-    player_b = Controller().set_computer_player()
-    game = Controller().set_game(rounds, player_a, player_b)
+    player_a = Controller.set_player(name)
+    player_b = Controller.set_computer_player()
+    game = Controller.set_game(rounds, player_a, player_b)
 
-    Controller().play_game(game)
+    Controller.play_game(game)
 
 
 
