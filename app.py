@@ -4,7 +4,7 @@ from src.controller import Controller
 
 
 @click.group()
-def cli():
+def cli(): # pragma: no cover
     pass
 
 
@@ -33,5 +33,5 @@ def rps_game(rounds, name):
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     cli()
