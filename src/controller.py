@@ -1,6 +1,7 @@
 import click
 
 from .models import Player, Computer, Game
+from .game_config import MOVES_NUM
 
 class Controller:
 
@@ -31,7 +32,10 @@ class Controller:
             click.echo('-' * 50)
             click.echo(f'Round #{i + 1}')
 
-            move = click.prompt('Please enter your move', type=click.IntRange(0, 2))
+            move = click.prompt(
+                'Please enter your move',
+                type=click.IntRange(0, MOVES_NUM - 1)
+            )
             player_a.make_move(move)
 
             player_b.make_move()

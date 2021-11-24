@@ -1,6 +1,7 @@
 import unittest
 
-from src.models import Player, Computer, Game, game_map
+from src.models import Player, Computer, Game
+from src.game_config import game_moves_map
 
 
 class TestPlayer(unittest.TestCase):
@@ -14,7 +15,7 @@ class TestPlayer(unittest.TestCase):
     def test_get_move(self):
         player = Player(self.name)
         player.make_move(0)
-        self.assertEqual(game_map[0], player.get_move())
+        self.assertEqual(game_moves_map[0], player.get_move())
 
     def test_set_scored(self):
         player = Player(self.name)

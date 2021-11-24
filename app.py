@@ -1,6 +1,7 @@
 import click
 
 from src.controller import Controller
+from src.game_config import MIN_ROUNDS, MAX_ROUNDS
 
 
 @click.group()
@@ -13,7 +14,7 @@ def cli(): # pragma: no cover
     '--rounds', '-r',
     prompt=True,
     required=True,
-    type=click.IntRange(1, 7),
+    type=click.IntRange(MIN_ROUNDS, MAX_ROUNDS),
     default=1,
     help='Number of rounds',
 )

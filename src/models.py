@@ -1,13 +1,6 @@
 import random
 
-rps_matrix = [
-    [-1, 1, 0],
-    [1, -1, 2],
-    [0, 2, -1]
-]
-
-game_map = {0: 'rock', 1: 'paper', 2: 'scissors'}
-
+from .game_config import game_rules_matrix, game_moves_map, MOVES_NUM
 
 class Player:
     def __init__(self, name):
@@ -19,7 +12,7 @@ class Player:
         self.move = move
 
     def get_move(self):
-        return game_map[self.move]
+        return game_moves_map[self.move]
 
     def set_scored(self):
         self.score += 1
@@ -33,7 +26,7 @@ class Computer(Player):
         super().__init__('Computer')
 
     def make_move(self, move=None):
-        self.move = random.randint(0, 2)
+        self.move = random.randint(0, MOVES_NUM - 1)
 
 
 class Game:
@@ -44,7 +37,7 @@ class Game:
         self.draws = 0
 
     def play_round(self):
-        winner_move = rps_matrix[self.player_a.move][self.player_b.move]
+        winner_move = game_rules_matrix[self.player_a.move][self.player_b.move]
 
         if winner_move == self.player_a.move:
             self.player_a.set_scored()
