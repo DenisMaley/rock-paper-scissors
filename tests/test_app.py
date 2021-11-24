@@ -9,7 +9,7 @@ def mock_computer_move(cls, *args, **kwargs):
     return 0
 
 
-class TestController(unittest.TestCase):
+class TestApp(unittest.TestCase):
     def test_rps_game(self):
         with mock.patch('random.randint', mock_computer_move):
             runner = CliRunner()

@@ -1,7 +1,6 @@
 import click
 
-from src.controller import Controller
-from src.game_config import MIN_ROUNDS, MAX_ROUNDS
+from src import Controller, MIN_ROUNDS, MAX_ROUNDS
 
 
 @click.group()
