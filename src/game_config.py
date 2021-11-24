@@ -32,6 +32,9 @@ game_moves_map = {0: 'rock', 1: 'paper', 2: 'scissors'}
 # ]
 # game_moves_map = {0: "rock", 1: "paper", 2: "scissors", 3: "lizard", 4: "spock"}
 
+reversed_game_moves_map = {v: k for k, v in game_moves_map.items()}
+moves = reversed_game_moves_map.keys()
+
 MOVES_NUM = len(game_rules_matrix)
 MIN_ROUNDS = 1
 MAX_ROUNDS = 10

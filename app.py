@@ -4,7 +4,7 @@ from src import Controller, MIN_ROUNDS, MAX_ROUNDS
 
 
 @click.group()
-def cli(): # pragma: no cover
+def cli():  # pragma: no cover
     pass
 
 
@@ -33,5 +33,5 @@ def rps_game(rounds, name):
 
 
 
-if __name__ == '__main__': # pragma: no cover
+if __name__ == '__main__':  # pragma: no cover
     cli()

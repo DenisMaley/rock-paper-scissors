@@ -13,7 +13,7 @@ class TestApp(unittest.TestCase):
     def test_rps_game(self):
         with mock.patch('random.randint', mock_computer_move):
             runner = CliRunner()
-            result = runner.invoke(rps_game, input='3\nDenis\n0\n1\n2\n')
+            result = runner.invoke(rps_game, input='3\nDenis\nrock\npaper\nscissors\n')
             self.assertFalse(result.exception)
             self.assertEqual(result.exit_code, 0)
             self.assertIn('Rounds [1]: 3', result.output)

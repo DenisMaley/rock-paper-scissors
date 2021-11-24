@@ -1,7 +1,7 @@
 import click
 
 from .models import Player, Computer, Game
-from .game_config import MOVES_NUM
+from .game_config import moves, reversed_game_moves_map
 
 class Controller:
 
@@ -32,11 +32,17 @@ class Controller:
             click.echo('-' * 50)
             click.echo(f'Round #{i + 1}')
 
-            move = click.prompt(
+            # TODO Move this block to the Player model to make
+            #  the game more abstract and reuse the same code for
+            #  "one player" and "two players" modes
+            # ===Beginning of the block===
+            input = click.prompt(
                 'Please enter your move',
-                type=click.IntRange(0, MOVES_NUM - 1)
+                type=click.Choice(moves, case_sensitive=False)
             )
+            move = reversed_game_moves_map[input]
             player_a.make_move(move)
+            # ===End of the block===
 
             player_b.make_move()
 
