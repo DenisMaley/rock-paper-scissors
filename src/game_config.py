@@ -1,7 +1,7 @@
 # Game rules
-# Scissors cuts Paper
-# Paper covers Rock
-# Rock crushes Scissors
+# Paper wraps rock
+# Rock blunts scissors
+# Scissors cuts paper.
 
 game_rules_matrix = [
     [-1, 1, 0],
